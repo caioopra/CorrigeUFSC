@@ -1,0 +1,15 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.125rem;
+    margin-top: 2rem;
+    width: 98rem;
+    /* height: 40rem; */
+    align-items: center;
+}
+
+.wrapper {
+    margin-right: 4rem;
+    margin-left: 4rem;
+    margin-top: 4rem;
+}
