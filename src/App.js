@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Header";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [amountOfQuestions, setAmountOfQuestions] = useState(6);
+
+    const [biggestSum, setBiggestSum] = useState(64);
+
+    const [questions, setQuestions] = useState({});
+    const [answers, setAnswers] = useState({});
+
+    return (
+        <div className="App">
+            <Header 
+              amount={amountOfQuestions}
+              biggest={biggestSum}
+              changeAmount={setAmountOfQuestions}
+              changeBiggestSum={setBiggestSum}
+            />
+        </div>
+    );
 }
 
 export default App;
