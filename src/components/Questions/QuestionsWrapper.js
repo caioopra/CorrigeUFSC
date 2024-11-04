@@ -2,21 +2,16 @@ import PropTypes from "prop-types";
 import Question from "./Question";
 import "./QuestionsWrapper.css";
 
-const QuestionsWrapper = ({ amount, template, answers, handleChangeTemplate, handleChangeAnswers }) => {
+const QuestionsWrapper = ({ amount, questionsData, onUpdateQuestion }) => {
     const questionsComponents = [];
 
     for (let i = 0; i < amount; i++) {
-        template[i.toString()] = "0";
-        answers[i.toString()] = "0";
-
         questionsComponents.push(
             <Question
                 key={i.toString()}
-                number={(i + 1).toString()}
-                template={template[i.toString()]}
-                answer={answers[i.toString()]}
-                changeTemplate={handleChangeTemplate}
-                changeAnswer={handleChangeAnswers}
+                number={i + 1}
+                data={questionsData[i]}
+                onUpdate={(field, value) => onUpdateQuestion(i, field, value)}
             />
         );
     }
@@ -24,8 +19,14 @@ const QuestionsWrapper = ({ amount, template, answers, handleChangeTemplate, han
 };
 
 QuestionsWrapper.propTypes = {
-    handleChangeAnswers: PropTypes.func.isRequired,
-    handleChangeTemplate: PropTypes.func.isRequired,
-}
+    amount: PropTypes.number.isRequired,
+    questionsData: PropTypes.arrayOf(
+        PropTypes.shape({
+            template: PropTypes.number,
+            answer: PropTypes.number,
+        })
+    ).isRequired,
+    onUpdateQuestion: PropTypes.func.isRequired,
+};
 
 export default QuestionsWrapper;

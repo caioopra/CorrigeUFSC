@@ -4,8 +4,15 @@ import "./InputField.css";
 
 const InputField = ({ className, name, value, changeValue }) => {
     const handleChange = (e) => {
-        const numValue = e.target.value === "" ? 0 : Number(e.target.value);
-        changeValue(numValue); // Pass a number directly
+        let inputValue = e.target.value;
+
+        // Remove leading zero if it's followed by another number
+        if (inputValue.length > 1 && inputValue.startsWith("0")) {
+            inputValue = inputValue.slice(1);
+        }
+
+        // Convert the cleaned input to a number and call changeValue
+        changeValue(Number(inputValue));
     };
 
     return (
@@ -25,7 +32,7 @@ const InputField = ({ className, name, value, changeValue }) => {
 InputField.propTypes = {
     className: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired, // Expect a number
+    value: PropTypes.number.isRequired,
     changeValue: PropTypes.func.isRequired,
 };
 
