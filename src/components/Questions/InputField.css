@@ -1,0 +1,35 @@
+.card {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 8rem;
+    height: 4.9rem;
+}
+
+.gabarito {
+    background-color: var(--purple-background);
+}
+
+.resposta {
+    background-color: var(--green-background);
+}
+
+p,
+input {
+    color: #fff;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.625rem;
+}
+
+p {
+    margin-top: 0rem;
+}
+
+input {
+    margin-top: 0.12rem;
+    border-radius: 0.4rem;
+    color: black;
+}

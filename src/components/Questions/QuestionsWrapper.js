@@ -1,25 +1,31 @@
+import PropTypes from "prop-types";
 import Question from "./Question";
 import "./QuestionsWrapper.css";
 
-const QuestionsWrapper = (props) => {
+const QuestionsWrapper = ({ amount, template, answers, handleChangeTemplate, handleChangeAnswers }) => {
     const questionsComponents = [];
 
-    for (let i = 0; i < props.amount; i++) {
-        props.template[i.toString()] = "0";
-        props.answers[i.toString()] = "0";
+    for (let i = 0; i < amount; i++) {
+        template[i.toString()] = "0";
+        answers[i.toString()] = "0";
 
         questionsComponents.push(
             <Question
                 key={i.toString()}
                 number={(i + 1).toString()}
-                template={props.template.i}
-                answer={props.answers.i}
-                changeTemplate={props.templateHandler}
-                changeAnswer={props.answerHandler}
+                template={template[i.toString()]}
+                answer={answers[i.toString()]}
+                changeTemplate={handleChangeTemplate}
+                changeAnswer={handleChangeAnswers}
             />
         );
     }
     return <div className="grid">{questionsComponents}</div>;
 };
+
+QuestionsWrapper.propTypes = {
+    handleChangeAnswers: PropTypes.func.isRequired,
+    handleChangeTemplate: PropTypes.func.isRequired,
+}
 
 export default QuestionsWrapper;

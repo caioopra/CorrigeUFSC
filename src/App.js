@@ -5,30 +5,22 @@ import QuestionsWrapper from "./components/Questions/QuestionsWrapper";
 
 function App() {
     const [amountOfQuestions, setAmountOfQuestions] = useState(6);
-
     const [biggestSum, setBiggestSum] = useState(64);
-
     const [answers, setAnswers] = useState({});
     const [template, setTemplate] = useState({});
 
-    const handleAmountChange = (amount) => {
-        setAmountOfQuestions(amount);
-    };
-
-    const handleBiggestSumChange = (value) => {
-        setBiggestSum(value);
-    };
-
     const handleChangeTemplate = (value, position) => {
-        template[position] = value;
+        setTemplate((prevTemplate) => ({
+            ...prevTemplate,
+            [position]: value, // Directly store number
+        }));
     };
 
     const handleChangeAnswers = (value, position) => {
-        template[position] = value;
-    };
-
-    const handleGradeCalc = () => {
-        // calculateGrade(template, template, amountOfQuestions, biggestSum);
+        setAnswers((prevAnswers) => ({
+            ...prevAnswers,
+            [position]: value, // Directly store number
+        }));
     };
 
     return (
@@ -44,8 +36,8 @@ function App() {
                 amount={parseInt(amountOfQuestions, 10)}
                 template={template}
                 answers={answers}
-                templateHandler={handleChangeTemplate}
-                answersHandler={handleChangeAnswers}
+                handleChangeTemplate={handleChangeTemplate}
+                handleChangeAnswers={handleChangeAnswers}
             />
         </div>
     );
