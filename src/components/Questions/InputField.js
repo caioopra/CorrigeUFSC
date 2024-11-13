@@ -6,12 +6,20 @@ const InputField = ({ className, name, value, changeValue }) => {
     const handleChange = (e) => {
         let inputValue = e.target.value;
 
-        // Remove leading zero if it's followed by another number
         if (inputValue.length > 1 && inputValue.startsWith("0")) {
             inputValue = inputValue.slice(1);
         }
 
-        // Convert the cleaned input to a number and call changeValue
+        changeValue(Number(inputValue));
+    };
+
+    const handleBlur = (e) => {
+        let inputValue = e.target.value;
+
+        if (inputValue.length > 1 && inputValue.startsWith("0")) {
+            inputValue = inputValue.slice(1);
+        }
+
         changeValue(Number(inputValue));
     };
 
@@ -24,6 +32,7 @@ const InputField = ({ className, name, value, changeValue }) => {
                 max={99}
                 value={value}
                 onChange={handleChange}
+                onBlur={handleBlur}
             />
         </Card>
     );

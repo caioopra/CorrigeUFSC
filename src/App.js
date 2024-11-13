@@ -13,10 +13,26 @@ function App() {
     );
 
     const handleAmountChange = (amount) => {
+        if (amount < 0) {
+            amount = 0;
+        }
+
         setAmountOfQuestions(amount);
-        setQuestionsData(
-            Array.from({ length: amount }, () => ({ template: 0, answer: 0 }))
-        );
+        setQuestionsData((prevData) => {
+            const newData = [...prevData];
+
+            if (amount > prevData.length) {
+                // Add new questions
+                for (let i = prevData.length; i < amount; i++) {
+                    newData.push({ template: 0, answer: 0 });
+                }
+            } else if (amount < prevData.length) {
+                // Remove extra questions
+                newData.length = amount;
+            }
+
+            return newData;
+        });
     };
 
     const handleUpdateQuestion = (index, field, value) => {
