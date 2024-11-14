@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/CorrigeUFSC/static/css/main.d16694ca.css",
+    "main.js": "/CorrigeUFSC/static/js/main.cd40fd4a.js",
+    "static/js/453.1693df53.chunk.js": "/CorrigeUFSC/static/js/453.1693df53.chunk.js",
+    "index.html": "/CorrigeUFSC/index.html",
+    "main.d16694ca.css.map": "/CorrigeUFSC/static/css/main.d16694ca.css.map",
+    "main.cd40fd4a.js.map": "/CorrigeUFSC/static/js/main.cd40fd4a.js.map",
+    "453.1693df53.chunk.js.map": "/CorrigeUFSC/static/js/453.1693df53.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d16694ca.css",
+    "static/js/main.cd40fd4a.js"
+  ]
+}
