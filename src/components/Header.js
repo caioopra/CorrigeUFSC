@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./Header.css";
 
-const Header = ({ biggest, amount, changeBiggestSum, changeAmount }) => {
+const Header = ({ biggest, amount, changebiggestAlternative, changeAmount }) => {
     const handleChangeBiggest = (event) => {
         let exponent = Math.log2(biggest);
 
@@ -11,7 +11,7 @@ const Header = ({ biggest, amount, changeBiggestSum, changeAmount }) => {
             exponent--;
         }
 
-        changeBiggestSum(Math.pow(2, exponent));
+        changebiggestAlternative(Math.pow(2, exponent));
     };
 
     const handleChangeAmount = (event) => {
@@ -58,7 +58,7 @@ const Header = ({ biggest, amount, changeBiggestSum, changeAmount }) => {
 Header.propTypes = {
     biggest: PropTypes.number.isRequired,
     amount: PropTypes.number.isRequired,
-    changeBiggestSum: PropTypes.func.isRequired,
+    changebiggestAlternative: PropTypes.func.isRequired,
     changeAmount: PropTypes.func.isRequired,
 };
 

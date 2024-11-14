@@ -1,0 +1,26 @@
+.grade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 79rem;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+}
+
+.calc-grade {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-right: 4rem;
+    background-color: rgb(148, 0, 0);
+}
+
+.nota {
+    font-size: 1.8rem;
+    text-decoration: underline;
+    background-color: #575757;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 1.2rem;
+}

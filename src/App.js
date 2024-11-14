@@ -2,10 +2,12 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import QuestionsWrapper from "./components/Questions/QuestionsWrapper";
+import FinalGrade from "./components/Grade/FinalGrade";
+import calculateGrade from "./utils/calculateGrade";
 
 function App() {
     const [amountOfQuestions, setAmountOfQuestions] = useState(6);
-    const [biggestSum, setBiggestSum] = useState(64);
+    const [biggestAlternative, setbiggestAlternative] = useState(64);
 
     // Single state to hold data for all questions
     const [questionsData, setQuestionsData] = useState(
@@ -43,13 +45,17 @@ function App() {
         );
     };
 
+    const handleCalculateGrade = () => {
+        calculateGrade(questionsData, amountOfQuestions, biggestAlternative)
+    }
+
     return (
         <div className="App">
             <Header
                 amount={amountOfQuestions}
-                biggest={biggestSum}
+                biggest={biggestAlternative}
                 changeAmount={handleAmountChange}
-                changeBiggestSum={setBiggestSum}
+                changebiggestAlternative={setbiggestAlternative}
             />
 
             <QuestionsWrapper
@@ -57,6 +63,8 @@ function App() {
                 questionsData={questionsData}
                 onUpdateQuestion={handleUpdateQuestion}
             />
+
+            <FinalGrade calculateGrade={handleCalculateGrade} />
         </div>
     );
 }
