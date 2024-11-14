@@ -27,6 +27,48 @@ function getAvaliableAlternatives(biggestAlternative) {
     return alternatives;
 }
 
+function getScore(template, answer, availableAlternatives) {
+    const scores = [];
+
+    for (let i = 0; i < Object.keys(template).length; i++) {
+        scores.push(
+            getIndividualScore(template[i], answer[i], availableAlternatives)
+        );
+    }
+
+    return scores;
+}
+
+function getIndividualScore(template, answer, availableAlternatives) {
+    const correct_marked_as_correct = [];
+    const incorrect_marked_as_correct = [];
+
+    availableAlternatives.forEach((alternative) => {
+        if (answer.includes(alternative)) {
+            if (template.includes(alternative)) {
+                correct_marked_as_correct.push(alternative);
+            } else {
+                incorrect_marked_as_correct.push(alternative);
+            }
+        }
+    });
+
+    if (
+        correct_marked_as_correct.length <= incorrect_marked_as_correct.length
+    ) {
+        return 0.0;
+    }
+
+    const amount_of_alternatives = availableAlternatives.length;
+
+    const term =
+        template.length -
+        (correct_marked_as_correct.length - incorrect_marked_as_correct.length);
+
+    return parseFloat(
+        ((amount_of_alternatives - term) / amount_of_alternatives).toFixed(3)
+    );
+}
 
 /*
  * gabarito and respostas both are objects in the structure:
@@ -34,26 +76,22 @@ function getAvaliableAlternatives(biggestAlternative) {
  * to calculate, each wrong question eliminates one correct;
  * the pontuation for each exam is the amount of questions;
  */
-function calculateGrade(
-    questionsData,
-    amountOfQuestions,
-    biggestAlternative
-) {
+function calculateGrade(questionsData, amountOfQuestions, biggestAlternative) {
     const availableAlternatives = getAvaliableAlternatives(biggestAlternative);
-    console.log(availableAlternatives)
 
-    const alternativasGabarito = getAlternatives(
-        questionsData.map(({ template, answer }) => template),
+    const templates_array = questionsData.map(
+        ({ template, answer }) => template
+    );
+    const answers_array = questionsData.map(({ template, answer }) => answer);
+
+    const templateOptions = getAlternatives(
+        templates_array,
         availableAlternatives
     );
-    console.log("Alternativas gabarito: ", alternativasGabarito)
 
-    const alternativasAssinaladas = getAlternatives(
-        questionsData.map(({ template, answer }) => answer),
-        availableAlternatives
-    );
-    console.log("Alternativas assinaladas: ", alternativasAssinaladas)
+    const answerOptions = getAlternatives(answers_array, availableAlternatives);
 
+    return getScore(templateOptions, answerOptions, availableAlternatives);
 }
 
 export default calculateGrade;

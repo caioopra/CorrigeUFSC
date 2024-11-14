@@ -45,10 +45,6 @@ function App() {
         );
     };
 
-    const handleCalculateGrade = () => {
-        calculateGrade(questionsData, amountOfQuestions, biggestAlternative)
-    }
-
     return (
         <div className="App">
             <Header
@@ -64,7 +60,11 @@ function App() {
                 onUpdateQuestion={handleUpdateQuestion}
             />
 
-            <FinalGrade calculateGrade={handleCalculateGrade} />
+            <FinalGrade
+                questionsData={questionsData}
+                amountOfQuestions={amountOfQuestions}
+                biggestAlternative={biggestAlternative}
+            />
         </div>
     );
 }
